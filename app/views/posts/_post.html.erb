@@ -1,0 +1,10 @@
+<td><%= post.title %></td>
+<% if current_user.liked_by?(post.id) %>
+  <%# link_toじゃないと動かない remote: trueを付与することで、パラメーターがHTML形式ではなくJS形式で送られるようになります。%>
+  <td><%= link_to 'いいねを外す', destroy_like_path(post), data: { turbo_method: :delete }, remote: true %><%= post.likes.count %></td> 
+<% else %>
+  <td><%= button_to 'いいね', create_like_path(post), method: :POST, remote: true %><%= post.likes.count %></td>
+<% end %>
+<td><%= link_to 'Show', post %></td>
+<td><%= link_to 'Edit', edit_post_path(post) %></td>
+<td><%= button_to "Destroy this post", post, method: :delete %></td>

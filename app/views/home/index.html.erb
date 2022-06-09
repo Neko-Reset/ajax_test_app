@@ -1,0 +1,9 @@
+
+<% if user_signed_in? %>
+  <%# rails7だと記述が変わってしまう, button_toじゃないとダメみたい %>
+  <%= button_to( "サインアウト", destroy_user_session_path, method: :delete ) %> 
+<% else %>
+  <%= link_to 'ログイン', new_user_session_path %>
+  <%= link_to '新規登録', new_user_registration_path %>
+<% end %>
+<%= link_to '投稿ページへ', posts_path %>
